@@ -1,0 +1,16 @@
+TÜRBİN YEDEK PARÇA - ANDROID UYGULAMASI (PWA PAKETİ)
+=====================================================
+Gerçek .apk bu ortamda üretilemedi (Android derleme araçlarına erişim yok). Bu paket, telefona
+gerçek uygulama gibi "yüklenen" web uygulaması (PWA) sürümüdür: kendi simgesi, tam ekran, adres çubuğu yok.
+
+GEREKLİ: Paketin bir HTTPS adresinde durması (dosya olarak açılırsa Android yüklemeyi sunmaz).
+Ücretsiz seçenekler: GitHub Pages, Netlify Drop (netlify.com/drop), Cloudflare Pages.
+ 1) Zip'teki tüm dosyaları (index.html, manifest.webmanifest, sw.js, icon-*.png) aynı klasöre yükleyin.
+ 2) Telefonda Chrome ile adresi açın, giriş yapın.
+ 3) Menü (⋮) > "Uygulamayı yükle" / "Ana ekrana ekle". Ana ekranda uygulama simgesi oluşur.
+
+GÜVENLİK UYARISI: Sayfa internette durduğunda, şifreli veri dosyası da o adreste durur. Şifre ile
+korunur ama adresi bilen biri dosyayı indirip şifre denemesi yapabilir. Güçlü şifre kullanın ve
+adresi paylaşmayın; mümkünse erişim kısıtlı (parola korumalı) bir barındırma seçin.
+GÜNCELLEME: Panelden "Yeni HTML'i Kaydet" ile aldığınız dosyayı index.html adıyla yeniden yükleyin.
+Bu paket telefonda denenmemiştir.
