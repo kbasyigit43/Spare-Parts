@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Yedek Panel"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0b1f3d">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Yedek Panel"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0b1f3d"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
 <title>Türbin Bakım Genel Yedek Listesi</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font:14px Segoe UI,Arial,sans-serif;background:#eef1f5;color:#1d2733;height:100vh;display:flex;flex-direction:column}
@@ -10,7 +10,7 @@ header h1{font-size:17px;margin:0 6px 0 0;white-space:nowrap}header input[type=t
 .tb{border:0;border-radius:6px;padding:8px 12px;font:600 13px Segoe UI,Arial;cursor:pointer;background:#3d6cb9;color:#fff}.tb:hover{background:#5183cc}.tb.sv{background:#2e8b57}.tb.pr{background:#6b7785}
 #msg{background:#fff3cd;color:#5a4500;padding:0 16px;font-size:13px;max-height:0;overflow:hidden;transition:.2s}#msg.on{padding:7px 16px;max-height:60px}#msg.err{background:#f8d7da;color:#6b1a22}
 #msg.dirty{background:#ffe8a3;color:#5a3d00;font-weight:600;max-height:80px;border-bottom:2px solid #f2a900}
-body.dirty #bs{background:#c47a00!important;animation:pulse-save 1.6s ease-in-out infinite}
+body.dirty #bs,body.dirty #bg{background:#c47a00!important;animation:pulse-save 1.6s ease-in-out infinite}
 @keyframes pulse-save{0%,100%{box-shadow:0 0 0 0 #f2a90088}50%{box-shadow:0 0 0 6px #f2a90022}}
 main{flex:1;display:flex;min-height:0}
 #side{width:340px;background:#fff;border-right:1px solid #cfd6df;overflow:auto;flex:none}
@@ -32,7 +32,7 @@ td.bad{color:#a11d2a;background:#fde4e6}td.warn{color:#9a5b00;background:#fff3cd
 td.raf .tg{margin:0 3px 2px 0}tr[data-k]{cursor:pointer}tr[data-k]:hover td{background:#f1f5fc}tr.hl td{background:#fff3b0!important}
 .more{display:block;margin:12px auto}.empty{color:#7b8794;padding:40px;text-align:center}
 #lock input,.ov input{padding:9px 10px;border:1px solid #b9c6d3;border-radius:6px;font-size:14px}
-.ro #bi,.ro #bs,.ro #bk,.ro #bu{display:none}
+.ro #bi,.ro #bs,.ro #bg,.ro #bk,.ro #bu{display:none}
 .ov .box{background:#fff;border-radius:10px;padding:22px 26px;width:580px;max-width:95vw;max-height:90vh;overflow:auto;box-shadow:0 8px 30px #0006;display:flex;flex-direction:column;gap:10px}
 .ov .box input{flex:1;min-width:120px}.ov h4{margin:6px 0 0;font-size:13px;color:#44546a}.ov code{background:#eef1f5;padding:1px 6px;border-radius:4px;font-size:13px}
 .ut{border-collapse:collapse;width:100%;box-shadow:none}.ut th{position:static;background:#e3e8ee;color:#1d2733;padding:5px 8px}.ut td{padding:5px 8px}
@@ -55,7 +55,7 @@ td.raf .tg{margin:0 3px 2px 0}tr[data-k]{cursor:pointer}tr[data-k]:hover td{back
 .gl{border:1px solid #cfd6df;border-radius:6px;max-height:260px;overflow:auto;background:#fff}.gl .sh{background:#e3e8ee;font-weight:700;font-size:12px;padding:4px 8px;position:sticky;top:0}
 .gi{display:flex;gap:8px;align-items:flex-start;padding:4px 8px;cursor:pointer;font-size:13px;color:#1d2733}.gl .gi{border-bottom:1px solid #eef1f5}.gi:hover{background:#eaf0fa}.gi small{color:#7b8794;margin-left:6px}.ul{display:flex;gap:6px;align-items:center;font-size:13px;cursor:pointer;background:#fff;border:1px solid #cfd6df;border-radius:14px;padding:3px 10px}
 .ov .box input[type=checkbox],.ov .box input[type=radio]{flex:none;min-width:0;width:auto;margin-top:2px}
-.ro #bi,.ro #bs,.ro #bk,.ro #bu{display:none}#who{color:#cfe0f5;font-size:12px;margin-left:auto}#bo{display:none}.pt #bo{display:inline-block}
+.ro #bi,.ro #bs,.ro #bg,.ro #bk,.ro #bu{display:none}#who{color:#cfe0f5;font-size:12px;margin-left:auto}#bo{display:none}.pt #bo{display:inline-block}
 @media print{.ov,#who,#bo{display:none!important}}
 /* ---- Marka bandı ve görünüm ---- */
 .brand{display:flex;align-items:center;gap:16px;padding:12px 20px;background:linear-gradient(105deg,#0b1f3d 0%,#16335f 55%,#1f4d8f 100%);color:#fff;border-bottom:3px solid #f2a900;position:relative;flex:none}
@@ -634,7 +634,7 @@ html.tm2 #bph,html.tm2 #bpt{bottom:34%}
 <button class="tb pr" id="bp" title="Ekrandaki görünümü yazdır">🖨 Yazdır</button>
 <span class="hsep" style="display: none;"></span><div class="dd" id="ddr" style="display: none;"><button class="tb ddb" type="button" aria-haspopup="true" aria-expanded="false">📊 Raporlar <span class="car">▾</span></button><div class="ddm"></div></div><button class="tb" id="bdk" title="Tema seçimi: Tema 1 / 2 / 3 (bu cihazda)">🎨 Tema: Klasik</button><div class="dd" id="ddm"><button class="tb ddb" type="button" aria-haspopup="true" aria-expanded="false">☰ Menü</button><div class="ddm"><div class="dsec">Raporlar</div><button class="tb" id="bsm" title="Genel özet: stok, talep, veri tazeliği (yalnızca admin)">📋 Özet</button><button class="tb" id="btk" title="Gelmeyen talepler: sipariş geçilmiş / geçilmemiş / gecikmiş">🚚 Sipariş Takibi</button><button class="tb" id="bz" title="Son IEB/IZE güncellemesine göre stoğu biten kalemler (yalnızca admin)">📉 Stoğu Bitenler</button><button class="tb" id="bos" title="Açıklaması boş / #N/A olan kalem kodları (yalnızca admin)">📝 Açıklamasız (8)</button><button class="tb" id="bwk" title="Devam eden işler: özet ve stok durumu (yalnızca admin)">🛠 Devam Eden İşler</button><button class="tb" id="bfg" title="Malzeme fişi geçmişi (kullanıcı bazlı)">🧾 Fiş Geçmişi</button></div></div><div class="dd" id="ddy"><button class="tb ddb" type="button" aria-haspopup="true" aria-expanded="false">⚙ Yönetim <span class="car">▾</span></button><div class="ddm"><button class="tb" id="bk" title="Kullanıcıları ve yetkilerini yönet (yalnızca admin)">⚙ Admin Panel</button><button class="tb" id="bh" title="Son 3 günün giriş, güncelleme ve değişiklik geçmişi (yalnızca admin)">🕘 Geçmiş</button></div></div><span id="who"></span><button class="tb pr" id="bo" title="Oturumu kapat">🚪 Çıkış</button><input type="file" id="f" accept=".xlsx,.xlsm" hidden=""><input type="file" id="fu" accept=".xls,.xlsx,.xlsm" multiple="" hidden=""></header>
 <div id="msg"></div>
-<div id="databar"><div id="fdates"></div><div id="dact"><button class="tb" id="bu" title="IEB, IZE, satınalma ve (isteğe bağlı) mühendis listesi dosyalarını birlikte seçin; sütun yerleri önemli değil">🔄 Dosyalardan Güncelle</button><button class="tb sv" id="bs" title="Güncel verilerle yeni HTML dosyasını kaydedin">💾 Yeni HTML'i Kaydet</button></div></div>
+<div id="databar"><div id="fdates"></div><div id="dact"><button class="tb" id="bu" title="IEB, IZE, satınalma ve (isteğe bağlı) mühendis listesi dosyalarını birlikte seçin; sütun yerleri önemli değil">🔄 Dosyalardan Güncelle</button><button class="tb sv" id="bs" title="Güncel verilerle yeni HTML dosyasını kaydedin">💾 Yeni HTML'i Kaydet</button><button class="tb sv" id="bg" title="Güncel dosyayı doğrudan GitHub'a yükler (herkes yeni hâli görür)">☁ GitHub'a Yükle</button></div></div>
 <div id="lock" class="ov"><form id="lf"><h2>🔒 Türbin Bakım Genel Yedek Listesi</h2><p>Bu dosya şifrelidir. Kullanıcı adı ve şifrenizle girin (yönetici: <b>admin</b>).</p><input type="text" id="ln" placeholder="Kullanıcı adı" autocomplete="off"><input type="password" id="lp" placeholder="Şifre" autocomplete="off"><div class="er" id="le"></div><div class="row"><button class="tb" id="lb">Aç</button></div></form></div>
 <div id="pwd" class="ov"><div class="box" id="pb"></div></div>
 <div id="rp" class="ov"><div class="box" id="rb"></div></div>
@@ -886,7 +886,8 @@ $('f').onchange=async e=>{
     setDirty(`"${f.name}" aktarıldı: ${ns.groups.length} sistem, ${ns.groups.reduce((a,g)=>a+g.rows.length,0)} kalem. Kalıcı olması için 💾 Yeni HTML'i Kaydet'e basın.`);
   }catch(err){msg('Excel aktarılamadı: '+err.message,1)}
 };
-$('bs').onclick=async()=>{
+if('serviceWorker' in navigator&&location.protocol.startsWith('http')){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
+async function doSave(gh){
   const d=document.documentElement.cloneNode(true);
   if(ROLE!=='admin')return;
   if(PROT&&!ADMIN){msg('Önce yeni admin şifresi belirleyin (Kurtarma sonrası).',1);return}prepSave();logEv('kayit','Yeni HTML dosyası kaydedildi'+(PROT?' (şifreli)':''));let payload=JSON.stringify({...S,meta:META,hist:HIST});
@@ -896,6 +897,7 @@ $('bs').onclick=async()=>{
   ['side','view','msg'].forEach(i=>{const x=d.querySelector('#'+i);x.innerHTML='';x.removeAttribute('class');x.removeAttribute('style')});
   d.querySelector('#who').textContent='';['fb','hb'].forEach(i=>{const x=d.querySelector('#'+i);if(x)x.innerHTML=''});['fdates','fp','toast','idw'].forEach(i=>{const x=d.querySelector('#'+i);if(x){x.innerHTML='';x.removeAttribute('class');x.removeAttribute('style')}});['fs','hs','wz','wk','fg','bsh','idl','phv'].forEach(i=>{const x=d.querySelector('#'+i);if(x)x.className='ov'});['wzb','wkb','fgb','bshb','idlb','phvb'].forEach(i=>{const x=d.querySelector('#'+i);if(x)x.innerHTML=''});d.removeAttribute('class');d.querySelector('#fab').removeAttribute('style');d.querySelector('#fabn').textContent='0';d.querySelectorAll('#pgst').forEach(x=>x.remove());d.querySelector('#bsd').textContent='☰ Sistemler';d.querySelector('#fd').value='';d.querySelectorAll('#fd option').forEach(o=>o.removeAttribute('selected'));
   const blob=new Blob(['<!DOCTYPE html>\n'+d.outerHTML],{type:'text/html'});
+  if(gh){await ghUpload(blob);return}
   try{
     if(window.showSaveFilePicker){
       const h=await showSaveFilePicker({suggestedName:FILE,types:[{description:'HTML',accept:{'text/html':['.html']}}]});
@@ -905,6 +907,28 @@ $('bs').onclick=async()=>{
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=FILE;a.click();
   clearDirty('✅ İndirildi: '+FILE+(PROT?' (şifreli)':'')+'. Eski dosyanın üzerine kopyalayın.');
 };
+$('bs').onclick=()=>doSave(false);
+$('bg').onclick=()=>doSave(true);
+
+// ---- GitHub'a doğrudan yükleme ----
+const GH={owner:'kbasyigit43',repo:'Spare-Parts',path:'index.html',branch:'main'};
+async function ghUpload(blob){
+  let tok='';try{tok=localStorage.getItem('ghTok')||''}catch(e){}
+  if(!tok){tok=(prompt('GitHub token\'ını yapıştırın (yalnızca bu tarayıcıda saklanır):')||'').trim();if(!tok){msg('GitHub yükleme iptal edildi (token girilmedi). Değişiklikler hâlâ kaydedilmedi.',1);return}try{localStorage.setItem('ghTok',tok)}catch(e){}}
+  const api='https://api.github.com/repos/'+GH.owner+'/'+GH.repo+'/contents/'+encodeURIComponent(GH.path);
+  const hd={'Authorization':'Bearer '+tok,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  const bad=async r=>{if(r.status===401||r.status===403){try{localStorage.removeItem('ghTok')}catch(e){}return'Token geçersiz veya yetkisiz (Contents: Read and write gerekli). Tekrar deneyince yeni token sorulur.'}let m='';try{m=(await r.json()).message||''}catch(e){}return'GitHub hatası ('+r.status+'): '+m};
+  try{
+    msg('GitHub\'a yükleniyor...');
+    let sha;const g=await fetch(api+'?ref='+GH.branch,{headers:hd,cache:'no-store'});
+    if(g.ok){sha=(await g.json()).sha}else if(g.status!==404){msg(await bad(g),1);return}
+    const b64=await new Promise((res,rej)=>{const f=new FileReader();f.onload=()=>res(String(f.result).split(',')[1]);f.onerror=()=>rej(new Error('okuma'));f.readAsDataURL(blob)});
+    const body={message:'Admin güncellemesi '+new Date().toLocaleString('tr-TR'),content:b64,branch:GH.branch};if(sha)body.sha=sha;
+    const p=await fetch(api,{method:'PUT',headers:{...hd,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!p.ok){msg(await bad(p),1);return}
+    clearDirty('✅ GitHub\'a yüklendi. Kullanıcılar sayfayı yenileyince görür (yayın 1-2 dk sürebilir).');
+  }catch(e){msg('Yükleme başarısız: '+(e&&e.message||e)+' (internet bağlantısını kontrol edin).',1)}
+}
 
 // ---- .xls (BIFF8) okuyucu: kütüphanesiz ----
 function xlsRead(buf){
@@ -2169,7 +2193,7 @@ function bnUpd(){const n=$('bnn'),f=$('fabn');if(n&&f){n.textContent=f.textConte
   const _uf=updFab;updFab=function(){_uf.apply(this,arguments);bnUpd()};
 })();
 function bshOpen(){
-  const items=['bsm','btk','bz','bos','bwk','bfg','bk','bh','bdk','bu','bs'].map(a=>$(a)).filter(b=>b&&(b.id==='bdk'?fOn('koyu'):getComputedStyle(b).display!=='none')&&(!(b.id==='bu'||b.id==='bs')||ROLE==='admin'));
+  const items=['bsm','btk','bz','bos','bwk','bfg','bk','bh','bdk','bu','bs','bg'].map(a=>$(a)).filter(b=>b&&(b.id==='bdk'?fOn('koyu'):getComputedStyle(b).display!=='none')&&(!(b.id==='bu'||b.id==='bs'||b.id==='bg')||ROLE==='admin'));
   const bx=$('bshb');bx.innerHTML='<h3>Menü</h3><div class="bsg">'+items.map(b=>'<button type="button" class="tb" data-p="'+b.id+'">'+esc(b.textContent.trim())+'</button>').join('')+'<button type="button" class="tb bso" data-p="bo">⏻ Çıkış</button></div>';
   $('bsh').classList.add('on')}
 $('bshb').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(!b)return;$('bsh').classList.remove('on');const t=$(b.dataset.p);setTimeout(()=>t&&t.click(),30)});
