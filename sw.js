@@ -23,7 +23,7 @@ self.addEventListener('activate', event => {
       .then(keys =>
         Promise.all(
           keys
-            .filter(key => key !== C)
+            .filter(key => key.startsWith('spare-parts-') && key !== C)
             .map(key => caches.delete(key))
         )
       )
@@ -48,10 +48,9 @@ self.addEventListener('fetch', event => {
         }
         return response;
       })
-      .catch(() =>
-        caches.match(request).then(cached =>
-          cached || caches.match('index.html')
-        )
-      )
+      .catch(async () => {
+        const cache = await caches.open(C);
+        return await cache.match(request) || await cache.match('index.html');
+      })
   );
 });
