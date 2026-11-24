@@ -33,7 +33,7 @@ self.addEventListener('fetch', event => {
   ) return;
 
   event.respondWith(
-    fetch(request, { cache: 'no-store' })
+    fetch(request, { cache: 'no-cache' })
       .then(response => {
         if (response.ok && !request.url.includes('data.json')) {
           const copy = response.clone();

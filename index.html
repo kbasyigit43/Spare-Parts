@@ -799,7 +799,7 @@ function showSig(){if(window.__sig)return;window.__sig=1;
   setTimeout(()=>{d.classList.add('out');setTimeout(()=>d.remove(),700)},3100)}
 $('lf').onsubmit=async e=>{e.preventDefault();if($('lb').disabled)return;let n=$('ln').value,p=$('lp').value,le=$('le'),lb=$('lb');le.textContent='Şifre doğrulanıyor, telefonda birkaç saniye sürebilir...';lb.disabled=true;
   try{if(!hasC())throw Error('nocrypto');if(RAW.enc!==3)throw Error('oldfmt');
-    await new Promise(r=>requestAnimationFrame(()=>setTimeout(r,40)));
+    await new Promise(r=>setTimeout(r,80));
     let r;try{r=await unpack(RAW,n,p)}catch(x1){const p2=p.trim();if(x1&&x1.message==='bad'&&p2!==p){r=await unpack(RAW,n,p2);p=p2}else throw x1}
     S=FROMS(r.sheets);ROLE=r.role;WHO=n.trim();PROT=true;USERS=r.users;UI=r.ui||{};ADMIN=ROLE==='admin'&&!REC?p:'';
     $('lock').classList.remove('on');document.body.classList.add('rdy');showSig();$('lp').value='';le.textContent='';applyRole();loginInit(r);AFTERF();if(REC)recStart()}
