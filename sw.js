@@ -1,5 +1,4 @@
-
-const C = 'spare-parts-v1';
+const C = 'spare-parts-v2';
 
 const F = [
   './',
@@ -20,13 +19,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys =>
-        Promise.all(
-          keys
-            .filter(key => key.startsWith('spare-parts-') && key !== C)
-            .map(key => caches.delete(key))
-        )
-      )
+      .then(keys => Promise.all(keys.filter(key => key !== C).map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
@@ -40,7 +33,7 @@ self.addEventListener('fetch', event => {
   ) return;
 
   event.respondWith(
-    fetch(request)
+    fetch(request, { cache: 'no-store' })
       .then(response => {
         if (response.ok && !request.url.includes('data.json')) {
           const copy = response.clone();
@@ -50,7 +43,7 @@ self.addEventListener('fetch', event => {
       })
       .catch(async () => {
         const cache = await caches.open(C);
-        return await cache.match(request) || await cache.match('index.html');
+        return await cache.match(request, { ignoreSearch: true }) || await cache.match('index.html');
       })
   );
 });
